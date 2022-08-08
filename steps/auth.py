@@ -27,5 +27,3 @@ def auth(driver: WebDriver) -> None:
     passInput.send_keys(PASS)
     sleep(1)
     buttonSubmit.click()
-
-    print('passou')
