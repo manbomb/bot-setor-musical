@@ -1,4 +1,3 @@
-from time import sleep
 from selenium import webdriver
 from options import set_chrome_options
 
