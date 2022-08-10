@@ -9,6 +9,13 @@ def check_exists_by_name(webdriver, name):
         return False
     return True
 
+def check_exists_by_id(webdriver, id):
+    try:
+        webdriver.find_element_by_id(id)
+    except NoSuchElementException:
+        return False
+    return True
+
 def check_exists_by_xpath(webdriver, xpath):
     try:
         webdriver.find_element_by_xpath(xpath)
