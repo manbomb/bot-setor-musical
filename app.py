@@ -1,3 +1,4 @@
+from time import sleep
 from selenium import webdriver
 import csv
 
@@ -5,6 +6,9 @@ from options import set_chrome_options
 from steps.accessNewUser import accessNewUserPage
 from steps.auth import auth
 from steps.fillWithUser import fillWithUser
+from steps.readCsv import readCsv
+
+users = readCsv('./data.csv')
 
 capabilities = webdriver.DesiredCapabilities.CHROME
 chrome_options = set_chrome_options()
@@ -24,12 +28,13 @@ except Exception as E:
     driver.quit()
     exit(1)
 
-try:
-    fillWithUser(driver, 'Sérgio Lucas Avilla da Silva', 'sergiolucasavilladasilva@gmail.com', 'ENCARREGADOS / SECRETÁRIOS', 'avenida')
-except Exception as E:
-    print("Houve um erro ao preencher/cadastrar usuário!")
-    driver.quit()
-    exit(1)
+for user in users:
+    try:
+        fillWithUser(driver, **user)
+        sleep(3)
+        accessNewUserPage(driver)
+    except Exception as E:
+        print("Houve um erro ao preencher/cadastrar usuário!")
 
 driver.quit()
 exit(0)
