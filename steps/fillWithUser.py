@@ -44,7 +44,7 @@ def fillWithUser(driver: WebDriver, nome: str, email: str, grupo: str, comum: st
     try:
         verificaHouveErro(driver)    
     except Exception as E:
-        errorLog(f"{nome} - {email} - {grupo} - {comum}")
+        errorLog("Provável repetido abaixo!") #TODO: remover depois
         raise E
 
 def selectComum(driver: WebDriver, comum: str) -> None:
